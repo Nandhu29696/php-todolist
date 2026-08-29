@@ -14,22 +14,100 @@
       <p class="subtitle">PHP + MySQL, powered by a small REST API</p>
     </header>
 
-    <form id="todo-form" class="todo-form">
-      <input type="text" id="title" placeholder="What needs to be done?" required maxlength="255">
-      <input type="text" id="description" placeholder="Details (optional)" maxlength="500">
-      <button type="submit">Add</button>
-    </form>
+    <nav class="main-nav">
+      <a href="#/dashboard" data-nav="dashboard">Dashboard</a>
+      <a href="#/todos" data-nav="todos">All Todos</a>
+      <a href="#/add" data-nav="add">Add Todo</a>
+      <a href="#/completed" data-nav="completed">Completed</a>
+      <a href="#/about" data-nav="about">About</a>
+    </nav>
 
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="active">Active</button>
-      <button class="filter-btn" data-filter="completed">Completed</button>
-    </div>
-
-    <ul id="todo-list" class="todo-list"></ul>
-
-    <p id="empty-state" class="empty-state" hidden>Nothing here yet — add your first task above.</p>
     <p id="error-state" class="error-state" hidden></p>
+
+    <!-- ===================== DASHBOARD ===================== -->
+    <section id="view-dashboard" class="view">
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number" id="stat-total">0</div>
+          <div class="stat-label">Total</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-active">0</div>
+          <div class="stat-label">Active</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-completed">0</div>
+          <div class="stat-label">Completed</div>
+        </div>
+      </div>
+      <h2 class="section-title">Recent activity</h2>
+      <ul id="dashboard-recent" class="todo-list"></ul>
+      <p id="dashboard-empty" class="empty-state" hidden>No todos yet — head to "Add Todo" to create one.</p>
+    </section>
+
+    <!-- ===================== ALL TODOS ===================== -->
+    <section id="view-todos" class="view">
+      <form id="todo-form" class="todo-form">
+        <input type="text" id="title" placeholder="What needs to be done?" required maxlength="255">
+        <input type="text" id="description" placeholder="Details (optional)" maxlength="500">
+        <button type="submit">Add</button>
+      </form>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="active">Active</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+
+      <ul id="todo-list" class="todo-list"></ul>
+      <p id="empty-state" class="empty-state" hidden>Nothing here yet — add your first task above.</p>
+    </section>
+
+    <!-- ===================== ADD TODO ===================== -->
+    <section id="view-add" class="view">
+      <h2 class="section-title">Add a new todo</h2>
+      <form id="add-form" class="add-form">
+        <label for="add-title">Title</label>
+        <input type="text" id="add-title" placeholder="e.g. Finish the report" required maxlength="255">
+
+        <label for="add-description">Description</label>
+        <textarea id="add-description" placeholder="Optional details" maxlength="500" rows="4"></textarea>
+
+        <button type="submit">Save Todo</button>
+      </form>
+      <p id="add-success" class="success-state" hidden>Todo added! <a href="#/todos">View all todos</a></p>
+    </section>
+
+    <!-- ===================== COMPLETED ===================== -->
+    <section id="view-completed" class="view">
+      <h2 class="section-title">Completed todos</h2>
+      <ul id="completed-list" class="todo-list"></ul>
+      <p id="completed-empty" class="empty-state" hidden>Nothing completed yet — check them off from "All Todos".</p>
+    </section>
+
+    <!-- ===================== ABOUT (static, no DB) ===================== -->
+    <section id="view-about" class="view">
+      <h2 class="section-title">About this app</h2>
+      <div class="about-card">
+        <p>This is a small Todo List application built with plain PHP and MySQL — no framework, no build step.</p>
+        <ul class="about-list">
+          <li><strong>Backend:</strong> PHP 8, PDO, prepared statements</li>
+          <li><strong>Database:</strong> MySQL, configured via a <code>.env</code> file</li>
+          <li><strong>Frontend:</strong> Vanilla HTML/CSS/JS, hash-based routing across 5 screens</li>
+          <li><strong>API:</strong> REST endpoints under <code>/api/todos</code> (GET, POST, PUT, PATCH, DELETE)</li>
+        </ul>
+        <h3>Screens</h3>
+        <ol class="about-list">
+          <li>Dashboard — live counts and recent activity</li>
+          <li>All Todos — full list with add form and filters</li>
+          <li>Add Todo — dedicated create form</li>
+          <li>Completed — filtered view of finished todos</li>
+          <li>About — this static reference page</li>
+        </ol>
+        <p class="version">Version 1.0.0 — this page's content is static and does not query the database.</p>
+      </div>
+    </section>
+
   </div>
 
   <script src="public/app.js"></script>

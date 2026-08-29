@@ -17,6 +17,22 @@ single-page frontend that consumes it.
 - PHP 8.1+ with the `pdo_mysql` extension
 - MySQL 5.7+ / 8.0+ (or MariaDB)
 
+## Screens
+
+The frontend is a single page with hash-based client-side routing across 5 screens:
+
+| Screen | Route | Data source |
+|---|---|---|
+| Dashboard | `#/dashboard` | MySQL — live counts (total/active/completed) + 5 most recent todos |
+| All Todos | `#/todos` | MySQL — full list, quick-add form, filter tabs (All/Active/Completed) |
+| Add Todo | `#/add` | MySQL — dedicated create form, redirects to All Todos on success |
+| Completed | `#/completed` | MySQL — filtered view of finished todos only |
+| About | `#/about` | **Static** — hardcoded reference content, no database query |
+
+All screens except About stay in sync automatically: creating, toggling, or
+deleting a todo anywhere immediately updates the counts and lists on every
+other screen next time you visit it.
+
 ## Project structure
 
 ```

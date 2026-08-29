@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todo List</title>
+<base href="__BASE_PATH__/">
+<link rel="stylesheet" href="public/style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Todo List</h1>
+      <p class="subtitle">PHP + MySQL, powered by a small REST API</p>
+    </header>
+
+    <form id="todo-form" class="todo-form">
+      <input type="text" id="title" placeholder="What needs to be done?" required maxlength="255">
+      <input type="text" id="description" placeholder="Details (optional)" maxlength="500">
+      <button type="submit">Add</button>
+    </form>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="completed">Completed</button>
+    </div>
+
+    <ul id="todo-list" class="todo-list"></ul>
+
+    <p id="empty-state" class="empty-state" hidden>Nothing here yet — add your first task above.</p>
+    <p id="error-state" class="error-state" hidden></p>
+  </div>
+
+  <script src="public/app.js"></script>
+</body>
+</html>
